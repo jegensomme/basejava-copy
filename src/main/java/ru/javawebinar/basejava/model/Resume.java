@@ -1,6 +1,7 @@
 
 package ru.javawebinar.basejava.model;
 
+import java.util.Comparator;
 import java.util.UUID;
 
 /**
@@ -11,12 +12,22 @@ public class Resume {
     // Unique identifier
     private final String uuid;
 
+    private final String fullName;
+
+    public static final Comparator<Resume> COMPARATOR = Comparator.comparing(Resume::getUuid).
+            thenComparing(Resume::getUuid);
+
     public Resume() {
         this(UUID.randomUUID().toString());
     }
 
     public Resume(String uuid) {
+        this(uuid, "unnamed");
+    }
+
+    public Resume(String uuid, String fullName) {
         this.uuid = uuid;
+        this.fullName = fullName;
     }
 
     public String getUuid() {
